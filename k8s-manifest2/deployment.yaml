@@ -20,8 +20,8 @@ spec:
       containers:
       - name: vite2
         image: 8076381912/argocd:v2
-      ports:
-      - containerPort: 80
+        ports:
+        - containerPort: 80
 
 ---
 
