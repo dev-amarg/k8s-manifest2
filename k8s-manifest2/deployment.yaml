@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: k8s-manifest2
+  namespace: my-app2
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vite
+
+  template:
+    metadata:
+      labels:
+        app: vite
+    spec:
+      containers:
+      - name: vite2
+        image: 8076381912/argocd:v2
+      ports:
+      - containerPort: 80
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: my-app2-service
+  namespace: my-app2
+
+spec:
+  selector:
+    app: vite
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30085
+  type: NodePort
